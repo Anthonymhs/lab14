@@ -32,6 +32,7 @@ function renderProductImages() {
     imgElements[i].alt = state.allProducts[randomIndex].name
     state.allProducts[randomIndex].timesShown++;
   }
+  localStorage.setItem("state", JSON.stringify(state));
 }
 
 function handleImageClick(event) {
