@@ -10,7 +10,43 @@ let canvasElem = document.getElementById('chart')
  * - Call chart.js with the configuration and the canvasElem
  *
  */
+const state = new AppState();
+state.loadItems();
+
 function renderChart() {
+        const ctx = canvasElem.getContext('2d');
+        const productNames = state.allProducts.map(product => product.name);
+        const productClicks = state.allProducts.map(product => product.timesClicked);
+        const productViews = state.allProducts.map(product => product.timesShown);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: productNames,
+                datasets: [{
+                    label: 'Views',
+                    data: productViews,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Clicks',
+                    data: productClicks,
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 }
 
 renderChart();
