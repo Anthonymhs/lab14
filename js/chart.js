@@ -39,7 +39,6 @@ function renderChart() {
                 }]
             },
             options: {
-                indexAxis: 'y',
                 scales: {
                     y: {
                         beginAtZero: true
